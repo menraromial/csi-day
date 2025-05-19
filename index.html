@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VoltK8sScheduler en Action</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/moon.min.css" id="theme">
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDES D'INTRODUCTION -->
+            <section data-transition="zoom">
+                <h2>Data Centers: Croissance Explosive</h2>
+                <div class="intro-icons">
+                    <i class="fas fa-server fa-3x grow-icon"></i>
+                    <i class="fas fa-bolt fa-3x energy-icon"></i>
+                    <i class="fas fa-globe fa-3x impact-icon"></i>
+                </div>
+                <p>Hausse des data centers. Consommation électrique et impact environnemental en forte croissance.</p>
+            </section>
+
+            <section data-transition="slide-in right">
+                <h2>Consommation: Chiffres Clés</h2>
+                <div class="intro-icons">
+                    <span class="big-text">460 TWh <small>(2022)</small></span>
+                    <i class="fas fa-arrow-right fa-2x"></i>
+                    <span class="big-text">>1000 TWh <small>(2026)</small></span>
+                    <i class="fas fa-brain fa-3x ai-icon"></i>
+                </div>
+                <p>IA propulse la demande. Calcul = 40% conso. Fournisseurs cloud veulent réduire coûts & empreinte.</p>
+            </section>
+
+            <section data-transition="slide-in right">
+                <h2>Défi: Énergies Renouvelables</h2>
+                <div class="intro-icons">
+                    <i class="fas fa-smog fa-3x pollution-icon"></i>
+                    <i class="fas fa-arrow-right fa-2x"></i>
+                    <i class="fas fa-wind fa-3x"></i>
+                    <i class="fas fa-sun fa-3x"></i>
+                </div>
+                <p>Objectif neutralité carbone: 90% renouvelables (2040). Solaire/éolien dominants, mais intermittents.</p>
+            </section>
+
+            <section data-transition="slide-in right">
+                <h2>Intermittence Solaire & Coûts</h2>
+                <div class="intro-icons">
+                    <div class="sun-location"><i class="fas fa-sun fa-2x dimmed"></i> L1</div>
+                    <div class="sun-location"><i class="fas fa-sun fa-2x"></i> L2</div>
+                    <div class="sun-location"><i class="fas fa-sun fa-2x very-dimmed"></i> L3</div>
+                    <i class="fas fa-clock fa-2x"></i>
+                    <i class="fas fa-euro-sign fa-2x price-icon"></i>
+                </div>
+                <p>Solaire variable (lieu/heure). Heures creuses/pleines influencent coûts. Parfois prix négatifs.</p>
+            </section>
+
+            <section data-transition="slide-in right">
+                <h2>Notre Solution: Double Approche</h2>
+                <div class="intro-icons">
+                    <span class="solution-step">1</span> <i class="fas fa-sliders-h fa-3x"></i>
+                    <span class="solution-step">2</span> <i class="fab fa-docker fa-3x"></i> <i class="fas fa-cogs fa-3x k8s-logo-like"></i>
+                </div>
+                <p>1: Limitation dynamique puissance serveurs. 2: Conteneurs + Kubernetes (orchestration).</p>
+            </section>
+
+            <section data-transition="slide-in right">
+                <h2>K8s & Énergie: Le Manque</h2>
+                <div class="intro-icons">
+                    <i class="fas fa-microchip fa-2x"></i> <i class="fas fa-memory fa-2x"></i>
+                    <i class="fas fa-question-circle fa-2x energy-question"></i>
+                    <i class="fas fa-plug fa-2x"></i>
+                </div>
+                <p>Scheduler K8s: optimise CPU/RAM. Ignore l'énergie. Nécessaire en environnement contraint.</p>
+            </section>
+
+            <section data-transition="fade-in-then-zoom-out">
+                <h2>Notre Innovation: VoltK8sScheduler</h2>
+                <div class="intro-icons">
+                    <div class="scheduler-obj intro-scheduler">🤖<br>VoltK8s</div>
+                </div>
+                <p>Nous proposons <strong>VoltK8sScheduler</strong>: intègre l'énergie dans le placement des conteneurs.</p>
+            </section>
+
+            <section data-transition="slide-in up">
+                <h2>Plan de la Présentation</h2>
+                <ol class="roadmap-list">
+                    <li><i class="fas fa-book-open"></i> État de l'art (Contexte Posé)</li>
+                    <li class="highlight-roadmap"><i class="fas fa-lightbulb"></i> Approche Proposée (Démo VoltK8s)</li>
+                    <li><i class="fas fa-chart-line"></i> Analyse Expérimentale</li>
+                    <li><i class="fas fa-flag-checkered"></i> Conclusion</li>
+                </ol>
+                <p>Voyons comment VoltK8sScheduler fonctionne !</p>
+            </section>
+
+            <!-- SLIDES DE LA DÉMO PRÉCÉDENTE (commencent ici) -->
+            <section data-transition="zoom">
+                <h2>VoltK8sScheduler: Démo</h2>
+                <div class="k8s-container initial-setup">
+                    <div class="scheduler-obj">🤖<br>Scheduler</div>
+                    <div class="node-obj node-a">
+                        NodeA<br>
+                        Pmax: 100W<br>
+                        Pac: 30W<br>
+                        <span class="available-power">Dispo: 70W</span>
+                        <div class="power-bar-bg"><div class="power-bar" style="width: 100%;"></div></div>
+                    </div>
+                    <div class="node-obj node-b">
+                        NodeB<br>
+                        Pmax: 120W<br>
+                        Pac: 40W<br>
+                        <span class="available-power">Dispo: 80W</span>
+                        <div class="power-bar-bg"><div class="power-bar" style="width: 100%;"></div></div>
+                    </div>
+                    <div class="pod-queue">
+                        <p>File d'attente :</p>
+                        <div class="pod-obj pod1-queue">Pod1 (20W)</div>
+                        <div class="pod-obj pod2-queue">Pod2 (15W user, 30W hist)</div>
+                    </div>
+                </div>
+                <p><small><code>nodePowerAllocations</code>: {"A":0, "B":0}. MaxNodeScore: 100.</small></p>
+            </section>
+
+            <!-- ... reste des slides de la démo ... -->
+
+            <section data-transition="slide-in right">
+                <h2>Pod1: PreFilter</h2>
+                <div class="k8s-container pod1-prefilter">
+                    <div class="scheduler-obj active">🤖<br>Analyse Pod1</div>
+                    <div class="pod-obj pod1-active">Pod1<br>20W</div>
+                    <div class="node-obj node-a">NodeA<br><span class="available-power">70W</span></div>
+                    <div class="node-obj node-b">NodeB<br><span class="available-power">80W</span></div>
+                </div>
+                <p>Pod1: puissance utilisateur 20W. Pas d'historique.</p>
+                <p class="fragment"><code>podPower</code> = 20W.</p>
+            </section>
+
+            <!-- SLIDE 3: Pod1 - Filter -->
+            <section data-transition="slide-in right">
+                <h2>Pod1: Filter</h2>
+                <div class="k8s-container pod1-filter">
+                    <div class="scheduler-obj">🤖</div>
+                    <div class="pod-obj pod1-checking">Pod1 (20W)</div>
+                    <div class="node-obj node-a viable">NodeA (70W dispo) ✔️</div>
+                    <div class="node-obj node-b viable">NodeB (80W dispo) ✔️</div>
+                </div>
+                <p>NodeA (70W) et NodeB (80W) sont viables.</p>
+            </section>
+
+            <!-- SLIDE 4: Pod1 - Score -->
+            <section data-transition="slide-in right">
+                <h2>Pod1: Score</h2>
+                 <div class="k8s-container pod1-score">
+                    <div class="scheduler-obj">🤖<br>Score!</div>
+                    <div class="pod-obj pod1-waiting">Pod1 (20W)</div>
+                    <div class="node-obj node-a"><div class="score">Score: 50</div>NodeA</div>
+                    <div class="node-obj node-b"><div class="score">Score: 60</div>NodeB</div>
+                </div>
+                <p>NodeA: Score 50. NodeB: Score 60.</p>
+            </section>
+
+            <!-- SLIDE 5: Pod1 - NormalizeScore & Assignation -->
+            <section data-transition="slide-in right">
+                <h2>Pod1: NormalizeScore & Assignation</h2>
+                <div class="k8s-container pod1-assign">
+                    <div class="scheduler-obj">🤖<br>Décision!</div>
+                    <div class="pod-obj pod1-assigned-b">Pod1 (20W) →</div>
+                    <div class="node-obj node-a"><div class="norm-score">Norm: ~83</div>NodeA</div>
+                    <div class="node-obj node-b chosen"><div class="norm-score">Norm: 100</div>NodeB ✨</div>
+                </div>
+                <p>NodeB (100) > NodeA (~83). Pod1 assigné à NodeB.</p>
+            </section>
+
+            <!-- SLIDE 6: Pod1 - Reserve -->
+            <section data-transition="slide-in right">
+                <h2>Pod1: Reserve</h2>
+                <div class="k8s-container pod1-reserve">
+                    <div class="scheduler-obj">🤖</div>
+                    <div class="node-obj node-a">
+                        NodeA<br>
+                        <span class="available-power">Dispo: 70W</span>
+                        <div class="power-bar-bg"><div class="power-bar" style="width: 100%;"></div></div>
+                    </div>
+                    <div class="node-obj node-b node-b-updated">
+                        NodeB<br>
+                        <span class="available-power">Dispo: 60W</span>
+                        <div class="power-bar-bg"><div class="power-bar" style="width: calc((120 - 40 - 20) / (120 - 40) * 100%);"></div></div>
+                        <div class="pod-obj pod1-on-nodeb">Pod1 (20W)</div>
+                    </div>
+                     <div class="pod-queue">
+                        <p>File d'attente :</p>
+                        <div class="pod-obj pod2-queue">Pod2 (15W user, 30W hist)</div>
+                    </div>
+                </div>
+                <p>NodeB réserve 20W. <code>nodePowerAllocations</code>: {"A":0, "B":20}.</p>
+            </section>
+
+            <!-- SLIDE 7: Pod2 - PreFilter -->
+            <section data-transition="slide-in right">
+                <h2>Pod2: PreFilter</h2>
+                <div class="k8s-container pod2-prefilter">
+                    <div class="scheduler-obj active">🤖<br>Analyse Pod2</div>
+                    <div class="pod-obj pod2-active">Pod2<br>15W (user)<br>30W (hist)</div>
+                    <div class="node-obj node-a">NodeA<br><span class="available-power">70W</span></div>
+                    <div class="node-obj node-b">NodeB<br><span class="available-power">60W</span></div>
+                </div>
+                <p>Pod2: puissance user 15W, historique max 30W.</p>
+                <p class="fragment"><code>podPower</code> = 30W (utilise l'historique).</p>
+            </section>
+
+            <!-- SLIDE 8: Pod2 - Filter -->
+            <section data-transition="slide-in right">
+                <h2>Pod2: Filter</h2>
+                <div class="k8s-container pod2-filter">
+                     <div class="scheduler-obj">🤖</div>
+                    <div class="pod-obj pod2-checking">Pod2 (30W)</div>
+                    <div class="node-obj node-a viable">NodeA (70W dispo) ✔️</div>
+                    <div class="node-obj node-b viable">NodeB (60W dispo) ✔️</div>
+                </div>
+                <p>NodeA (70W) et NodeB (60W après Pod1) sont viables.</p>
+            </section>
+
+            <!-- SLIDE 9: Pod2 - Score -->
+            <section data-transition="slide-in right">
+                <h2>Pod2: Score</h2>
+                <div class="k8s-container pod2-score">
+                    <div class="scheduler-obj">🤖<br>Score!</div>
+                    <div class="pod-obj pod2-waiting">Pod2 (30W)</div>
+                    <div class="node-obj node-a"><div class="score">Score: 40</div>NodeA</div>
+                    <div class="node-obj node-b"><div class="score">Score: 30</div>NodeB</div>
+                </div>
+                <p>NodeA: Score 40. NodeB: Score 30.</p>
+            </section>
+
+            <!-- SLIDE 10: Pod2 - NormalizeScore & Assignation -->
+            <section data-transition="slide-in right">
+                <h2>Pod2: NormalizeScore & Assignation</h2>
+                 <div class="k8s-container pod2-assign">
+                    <div class="scheduler-obj">🤖<br>Décision!</div>
+                    <div class="pod-obj pod2-assigned-a">→ Pod2 (30W)</div>
+                    <div class="node-obj node-a chosen"><div class="norm-score">Norm: 100</div>NodeA ✨</div>
+                    <div class="node-obj node-b"><div class="norm-score">Norm: 75</div>NodeB</div>
+                </div>
+                <p>NodeA (100) > NodeB (75). Pod2 assigné à NodeA.</p>
+            </section>
+
+            <!-- SLIDE 11: Pod2 - Reserve & État Final -->
+            <section data-transition="slide-in right">
+                <h2>Pod2: Reserve & État Final</h2>
+                <div class="k8s-container final-state">
+                    <div class="scheduler-obj">🤖</div>
+                    <div class="node-obj node-a node-a-updated">
+                        NodeA<br>
+                        <span class="available-power">Dispo: 40W</span>
+                        <div class="power-bar-bg"><div class="power-bar" style="width: calc((100 - 30 - 30) / (100 - 30) * 100%);"></div></div>
+                        <div class="pod-obj pod2-on-nodea">Pod2 (30W)</div>
+                    </div>
+                    <div class="node-obj node-b node-b-final">
+                        NodeB<br>
+                        <span class="available-power">Dispo: 60W</span>
+                        <div class="power-bar-bg"><div class="power-bar" style="width: calc((120 - 40 - 20) / (120 - 40) * 100%);"></div></div>
+                        <div class="pod-obj pod1-on-nodeb">Pod1 (20W)</div>
+                    </div>
+                </div>
+                <p>NodeA réserve 30W. <code>nodePowerAllocations</code>: {"A":30, "B":20}.</p>
+            </section>
+
+             <!-- SLIDE 12: Conclusion -->
+            <section data-transition="fade">
+                <h2>Conclusion</h2>
+                <div class="k8s-container conclusion">
+                     <div class="scheduler-obj">👍</div>
+                    <div class="node-obj node-a">NodeA<br><div class="pod-obj">Pod2 (30W)</div></div>
+                    <div class="node-obj node-b">NodeB<br><div class="pod-obj">Pod1 (20W)</div></div>
+                </div>
+                <p>VoltK8sScheduler a placé les pods efficacement !</p>
+                <p>Consommation et capacité prises en compte.</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

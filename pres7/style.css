@@ -1,0 +1,79 @@
+/* === THÈME 1: CLARTÉ SAPHIR === */
+body { background-color: #e0e8f0; /* Fond général très clair */ }
+.reveal { color: #334e68; /* Texte principal gris-bleu foncé */ }
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 { color: #107dac; /* Titres bleu saphir */ }
+
+/* Pied de page */
+.custom-footer { color: #627d98; }
+.custom-footer .footer-left, .custom-footer .footer-right { background-color: rgba(204, 214, 224, 0.7); /* Fond footer bleu-gris clair */ }
+
+/* Slide Titre */
+.title-main { color: #005a8d !important; } /* Titre principal plus foncé */
+.subtitle-main { color: #486581; }
+.logo-banner { background-color: rgba(255, 255, 255, 0.6); border: 1px solid #cdd7e0; }
+
+/* Auteurs & Conf Info */
+.authors-list p { color: #243b53; }
+.authors-list small { color: #829ab1; }
+.conference-info { color: #107dac; }
+
+/* Figures */
+.figure-large, .figure-medium, .figure-small { border: 1px solid #b0c0d0; background-color: #f0f4f8; }
+img.zoomable:hover { border-color: #107dac; }
+
+/* Composants Architecture */
+.component-box { border: 1px solid #627d98; background-color: rgba(240, 244, 248, 0.5); }
+.component-box h4 { color: #107dac; }
+.component-box p { color: #486581; }
+.component-box .fas, .component-box .fab, .component-box .scheduler-obj { color: #107dac; }
+
+/* Utilitaires Visuels */
+.icon-row .fas, .icon-row .fab { color: #107dac; }
+.icon-row .red { color: #d9534f; } /* Rouge doux */
+.icon-row .green { color: #5cb85c; } /* Vert doux */
+.spaced-list li { color: #334e68; }
+.spaced-list li .fas, .spaced-list li .fab { color: #107dac; }
+
+/* Code */
+.reveal pre code { background-color: #f0f4f8 !important; color: #334e68 !important; border: 1px solid #b0c0d0; }
+.hljs-comment, .hljs-quote { color: #829ab1; }
+.hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c94c4c; }
+.hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #6a1b9a; } /* Violet */
+.hljs-attribute { color: #2186eb; } /* Bleu plus vif */
+.hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #257942; } /* Vert foncé */
+.hljs-title, .hljs-section { color: #005a8d; }
+.hljs-keyword, .hljs-selector-tag { color: #ad1457; } /* Rose foncé */
+
+/* Intro et Roadmap */
+.intro-icons { color: #107dac; }
+.intro-icons .big-text { color: #005a8d; }
+.intro-icons .big-text small { color: #829ab1; }
+.pollution-icon { color: #a1887f; }
+.solution-step { color: #107dac; }
+.k8s-logo-like, .intro-scheduler { color: #107dac; border-color: #107dac !important; background-color: rgba(16, 125, 172, 0.1) !important; }
+.energy-question { color: #f0ad4e; } /* Jaune-orange */
+.roadmap-list li { color: #334e68; }
+.roadmap-list li .fas, .roadmap-list li .fab { color: #107dac; }
+.roadmap-list li.current-roadmap-item, .roadmap-list li:hover { background-color: rgba(16, 125, 172, 0.1); }
+.roadmap-list li.highlight-roadmap { border-left: 3px solid #107dac; }
+
+/* Démo K8s */
+.scheduler-obj, .node-obj, .pod-obj { border: 1px solid #9fb3c8; color: #334e68; }
+.scheduler-obj { background-color: rgba(16, 125, 172, 0.15); border-color: #107dac; } /* Bleu Saphir */
+.scheduler-obj.active { box-shadow: 0 0 10px rgba(16, 125, 172, 0.5); }
+.node-obj { background-color: rgba(217, 83, 79, 0.1); border-color: #d9534f; } /* Rouge Doux */
+.power-bar-bg { background-color: #d1d9e0; }
+.power-bar { background-color: #5cb85c; } /* Vert Doux */
+.pod-obj { background-color: rgba(240, 173, 78, 0.1); border-color: #f0ad4e; } /* Jaune-Orange */
+.pod-queue { border-color: #829ab1; }
+.pod-queue p { color: #829ab1; }
+.node-obj.viable { border-color: #5cb85c; box-shadow: 0 0 8px rgba(92, 184, 92, 0.5); }
+.node-obj.chosen { background-color: rgba(92, 184, 92, 0.2); border-color: #5cb85c; box-shadow: 0 0 12px rgba(92, 184, 92, 0.7); }
+.score, .norm-score { color: #d9534f; }
+
+/* Lightbox */
+.lightbox-container { background-color: rgba(40, 50, 60, 0.92); }
+#lightbox-image { border: 2px solid #f0f4f8; box-shadow: 0 0 35px rgba(0,0,0,0.5); }
+.lightbox-close-button { color: #f0f4f8; text-shadow: 0 0 5px #333; }
+.lightbox-close-button:hover { color: #d9534f; }
