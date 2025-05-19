@@ -402,26 +402,50 @@
                 </div>
                 <p class="fragment">RAPL v1: Chute rapide conso. v2: Baisse linéaire.</p>
             </section>
-            <section data-transition="fade" data-menu-section="experience">
+            <!-- <section data-transition="fade" data-menu-section="experience">
                 <h2>Distribution Pods: Nœuds Identiques</h2>
                 <p>Scénario 1: 2 nœuds workers identiques.</p>
                 <p class="fragment">App web. HPA ajoute 2 réplicas/fois.</p>
                 <img data-src="images/figure10.png" alt="Figure 10: Nœuds identiques" class="figure-medium fragment zoomable">
                 <p class="fragment">VoltK8sScheduler équilibre bien la charge.</p>
-            </section>
+            </section> -->
             <section data-transition="fade" data-menu-section="experience">
                 <h2>Distribution Pods: Nœuds Différenciés</h2>
-                <p>Scénario 2: Node1 Pmax = 90% de Node2 Pmax.</p>
+                <p>Scénario : Node1 Pmax = 90% de Node2 Pmax.</p>
             </section>
             <section data-transition="fade" data-menu-section="experience">
-                <h3>Cas 1: Web App (peu gourmande)</h3>
-                <img data-src="images/figure11.png" alt="Figure 11: Web App, Nœuds différenciés" class="figure-medium fragment zoomable">
-                <p class="fragment">Plus de pods sur Node2 pour compenser.</p>
+                <h3>Cas 1: Application web (guestbook)</h3>
+                <div style="display: flex; justify-content: space-around; gap:20px;" >
+                    <img id="hidden-webapp-framework-img" data-src="images/guestbook.jpg" alt="Figure 10: Web App, Nœuds identiques" class="visually-hidden-image zoomable-source">
+                    <div class="clickable-image-trigger fragment"
+                        data-lightbox-target="hidden-webapp-framework-img"
+                        tabindex="0" role="button"
+                        aria-label="Afficher l'image : Web App, Nœuds identiques">
+                        <i class="fas fa-search-plus"></i> Afficher l'achitecture de l'application
+                        <p class="alt-text-preview">
+                            (Figure 10: Web App, Guestbook)
+                        </p>
+                    </div>
+                    <img id="hidden-webapp-differentiated-img" data-src="images/scores_and_pods_web_app.png" alt="Figure 11: Web App, Nœuds différenciés" class="visually-hidden-image zoomable-source">
+                    <div class="clickable-image-trigger fragment"
+                        data-lightbox-target="hidden-webapp-differentiated-img"
+                        tabindex="0" role="button"
+                        aria-label="Afficher l'image : Web App, Nœuds différenciés">
+                        <i class="fas fa-search-plus"></i> Courbe de distribution des pods
+                        <p class="alt-text-preview">
+                            (Figure 11: Web App, Nœuds différenciés)
+                        </p>
+                    </div>
+                </div>
+                
+                <p class="fragment">Plus de pods sur Node2 pour compenser l'écart entre les deux nœuds.</p>
             </section>
-            <section data-transition="fade" data-menu-section="experience">
-                <h3>Cas 2: Stress-ng (gourmand)</h3>
-                <img data-src="images/figure12.png" alt="Figure 12: Stress-ng, Nœuds différenciés" class="figure-medium fragment zoomable">
-                <p class="fragment">Moins de pods sur Node2 suffisent.</p>
+            <section data-transition="fade" data-menu-section="experience" >
+                <h3 style="text-align: center;">Cas 2: Stress-ng (gourmand)</h3>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img data-src="images/scores_and_pods.png" alt="Figure 12: Stress-ng, Nœuds différenciés" class="figure-medium fragment zoomable" width="600" height="350" sizes="(max-width: 700px) 100vw, 600px" style="display: block; margin: 0 auto;">
+                    <p class="fragment" style="text-align: center;">Moins de pods sur Node2 suffisent.</p>
+                </div>
             </section>
             <section data-transition="fade" data-menu-section="experience">
                 <h2>Synthèse Expérimentale</h2>
@@ -454,7 +478,7 @@
                     <li class="fragment"><i class="fas fa-microchip"></i> Étendre à AMD.</li>
                     <li class="fragment"><i class="fas fa-server"></i> Intégration VMs.</li>
                     <li class="fragment"><i class="fas fa-cogs"></i> Autres mécanismes power capping.</li>
-                    <li class="fragment"><i class="fas fa-recycle"></i> Prise en compte origine énergie.</li>
+                    <!-- <li class="fragment"><i class="fas fa-recycle"></i> Prise en compte origine énergie.</li> -->
                 </ul>
             </section>
 
@@ -464,7 +488,8 @@
                 <div class="icon-row" style="margin-top: 50px;">
                     <i class="fas fa-question-circle fa-3x"></i> <i class="fas fa-hands-helping fa-3x"></i>
                 </div>
-                 <p class="fragment"><small>Code: github.com/menraromial/{powercap, scheduler-plugins}</small></p>
+                 <p class="fragment"><small>Email: <a href="mailto:itsme@menraromial.com">itsme@menraromial.com</a></small></p>
+                 <p class="fragment"><small>Site web: <a href="https://menraromial.com" target="_blank" rel="noopener">https://menraromial.com</a></small></p>
             </section>
             <!-- FIN SECTION CONCLUSION -->
 
