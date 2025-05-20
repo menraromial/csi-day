@@ -71,7 +71,7 @@
 
 
             <section data-transition="fade" data-menu-section="introduction">
-                <h2>Data Centers: Croissance Explosive</h2>
+                <h2>Data Centers: Prolifération des serveurs</h2>
                 <div class="intro-icons">
                     <i class="fas fa-server fa-3x grow-icon"></i> <i class="fas fa-bolt fa-3x energy-icon"></i> <i class="fas fa-globe fa-3x impact-icon"></i>
                 </div>
@@ -308,12 +308,12 @@
             <section data-transition="fade" data-menu-section="approche">
                 <h2>VoltK8sScheduler: Logique</h2>
                 <div class="scheduler-obj active">🤖</div>
-                <p>Notre ordonnanceur utilise se basse uniquement sur l'énergie pour prendre une décision.</p>
+                <p>Notre ordonnanceur se basse uniquement sur l'énergie pour prendre une décision.</p>
                 <p class="fragment">Objectif : placer pods sur nœuds avec assez d'énergie disponible.</p>
             </section>
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Phase 1: PreFilter</h2>
-                <p>Prépare infos. Calcule <code>podPower</code> (utilisateur ou historique).</p>
+                <p>Prépare les infos. Calcule <code>podPower</code> (utilisateur ou historique).</p>
                 <p class="fragment">Collecte <code>Pmax</code> (capping) et <code>Pac</code> (conso actuelle nœud).</p>
                 <pre class="fragment"><code class="language-plaintext" style="font-size: 0.6em;">Sortie: powerLimits [nodeName -> (Pmax, Pac, podPower)]</code></pre>
             </section>
@@ -332,7 +332,7 @@
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Phases 4 & 5</h2>
                 <p><strong>NormalizeScore</strong>: Normalise scores (0-MaxNodeScore).</p>
-                <p class="fragment"><strong>Reserve</strong>: Réserve temporairement <code>podPower</code>. Compense délai métriques.</p>
+                <p class="fragment"><strong>Reserve</strong>: Réserve temporairement <code>podPower</code>. Compense le délai de scrapping des métriques.</p>
                 <div class="icon-row fragment"> <i class="fas fa-balance-scale"></i> <i class="fas fa-lock"></i> </div>
             </section>
 
@@ -371,7 +371,7 @@
 
             <section id="experience" data-transition="fade" data-menu-section="experience">
                 <h2>Analyse Expérimentale: Configuration</h2>
-                <p>Tests sur Grid5000 (Tableau 1: Taurus, Econome, etc.).</p>
+                <p>Tests sur Grid5000 (Taurus, Econome, etc.).</p>
                 <p class="fragment">Cluster local: 3 mini-PCs (Intel i7, 15W, RAPL v2).</p>
                 <div class="icon-row fragment"> <i class="fas fa-server"></i> <i class="fas fa-desktop"></i> <i class="fas fa-flask"></i> </div>
             </section>
