@@ -55,7 +55,9 @@
                     <img src="images/stack.png" alt="Logo STACK" class="title-logo">
                     <img src="images/IMTA.png" alt="Logo IMTA" class="title-logo">
                 </div>
-                
+                <aside class="notes">
+                    Bonjour à tous. Je suis [Votre Nom] et aujourd'hui, je vais vous présenter VoltK8sScheduler, notre solution pour optimiser l'utilisation de l'énergie dans les clusters Kubernetes, un enjeu crucial pour un avenir numérique durable. 
+                </aside>
             </section>
 
             <section data-transition="fade" data-menu-section="introduction">
@@ -66,6 +68,10 @@
                     <p>Remous-Aris Koutsiamanis <small>(IMT Atlantique, Nantes)</small></p>
                     <p>Guillaume Rosinosky <small>(IMT Atlantique, Nantes)</small></p>
                 </div>
+
+                <aside class="notes">
+                    Ce travail est le fruit d'une collaboration entre
+                </aside>
             </section>
 
 
@@ -75,26 +81,30 @@
                 <div class="intro-icons">
                     <i class="fas fa-server fa-3x grow-icon"></i> <i class="fas fa-bolt fa-3x energy-icon"></i> <i class="fas fa-globe fa-3x impact-icon"></i>
                 </div>
-                <p>Hausse des centres de données. Consommation et impact environnemental croissants.</p>
+                <ul>
+                    <li class="fragment">Croissance rapide du nombre de data centers.</li>
+                    <li class="fragment intro-icons"><span class="big-text">460 TWh <small>(2022)</small></span> <i class="fas fa-arrow-right fa-2x"></i> <span class="big-text">>1000 TWh <small>(2026)</small></span> <i class="fas fa-brain fa-3x ai-icon"></i></li>
+                    <li class="fragment">La computation seule représente <span class="key-point">40%</span> de la consommation totale des data centers.</li>
+                    <li class="fragment">Objectif des fournisseurs cloud : Limiter la consommation et l'empreinte carbone.</li>
+                </ul>
+                <aside class="notes">
+                    Le secteur numérique est en pleine expansion, et avec lui la consommation des data centers. On parle de 460 TWh en 2022, et les prévisions dépassent les 1000 TWh pour 2026, notamment à cause de l'IA. Le calcul seul, c'est 40% de cette énergie. Un défi majeur pour les fournisseurs de cloud. 
+                </aside>
             </section>
 
-            <section data-transition="slide-in-right fade-out-left" data-menu-section="introduction">
-                <h2>Consommation: Chiffres Clés</h2>
-                <div class="intro-icons">
-                    <span class="big-text">460 TWh <small>(2022)</small></span> <i class="fas fa-arrow-right fa-2x"></i> <span class="big-text">>1000 TWh <small>(2026)</small></span> <i class="fas fa-brain fa-3x ai-icon"></i>
-                </div>
-                <p>IA propulse la demande. </br> 
-                    Calcul = 40% conso.</br>  
-                    Challenge : Réduire coûts & empreinte carbone.</p>
-            </section>
 
-            <section data-transition="slide-in-right fade-out-left" data-menu-section="introduction">
+
+            <section data-transition="slide-in-right fade-out-left" data-menu-section="introduction" class="need-margin-top" >
                 <h2>Défi: Énergies Renouvelables</h2>
                  <div class="intro-icons">
                     <i class="fas fa-smog fa-3x pollution-icon"></i> <i class="fas fa-arrow-right fa-2x"></i> <i class="fas fa-wind fa-3x"></i> <i class="fas fa-sun fa-3x"></i>
                 </div>
-                <p>Objectif neutralité carbone : Solaire/éolien dominants (90%), mais intermittents.</p>
-                 <img data-src="images/solar_curve.jpg" alt="Concept Figure 1: Intermittence Solaire" class="figure-medium fragment zoomable">
+                <p>Neutralité carbone 2050 : <span class="key-point">90%</span> d'électricité renouvelable d'ici 2040 (70% éolien/solaire).</p>
+                 <img data-src="images/solar_curve.jpg" alt="Concept Figure 1: Intermittence Solaire" class="figure-medium fragment zoomable" height="240" >
+                 
+                 <aside class="notes">
+                    Pour atteindre la neutralité carbone, la transition vers les énergies renouvelables est indispensable : 90% d'ici 2040. Mais ces énergies, comme le solaire ici, sont par nature intermittentes.
+                 </aside>
             </section>
 
             <section data-transition="slide-in-right fade-out-left" data-menu-section="introduction">
@@ -102,7 +112,14 @@
                 <div class="intro-icons">
                     <div class="sun-location"><i class="fas fa-sun fa-2x dimmed"></i> L1</div> <div class="sun-location"><i class="fas fa-sun fa-2x"></i> L2</div> <div class="sun-location"><i class="fas fa-sun fa-2x very-dimmed"></i> L3</div> <i class="fas fa-clock fa-2x"></i> <i class="fas fa-euro-sign fa-2x price-icon"></i>
                 </div>
-                <p>Solaire variable. Heures creuses/pleines influencent les coûts. Prix parfois négatifs.</p>
+                <ul>
+                    <li class="fragment">Intermittence (solaire, éolien).</li>
+                    <li class="fragment">Variabilité selon l'heure et la météo.</li>
+                    <li class="fragment"><strong>Coûts de l'électricité :</strong> Heures creuses/pleines, prix parfois négatifs.</li>
+                </ul>
+                <aside class="notes">
+                    Cette intermittence (soleil, vent) complique l'approvisionnement constant. Ajoutons à cela la volatilité des coûts de l'électricité, avec des heures pleines très chères et parfois même des prix négatifs. Il faut donc s'adapter. 
+                </aside>
             </section>
 
             <section data-transition="slide-in-right fade-out-left" data-menu-section="introduction">
@@ -110,7 +127,13 @@
                 <div class="intro-icons">
                     <span class="solution-step">1</span> <i class="fas fa-sliders-h fa-3x"></i> <span class="solution-step">2</span> <i class="fab fa-docker fa-3x"></i> <i class="fas fa-cogs fa-3x k8s-logo-like"></i>
                 </div>
-                <p>1: Limitation dynamique puissance. </br> 2: Conteneurs + Ordonnancement K8s éco-conscient.</p>
+                <ol>
+                    <li class="fragment"><span class="key-point">Limitation dynamique de la puissance des serveurs</span> en fonction de l'énergie disponible à la source.</li>
+                    <li class="fragment"><span class="key-point">Mécanisme d'ordonnancement</span> qui intègre explicitement la dimension énergétique pour le déploiement des workloads.</li>
+                </ol>
+                <aside class="notes">
+                    Face à ces défis, nous proposons une solution en deux temps : d'abord, limiter dynamiquement la puissance des serveurs selon l'énergie disponible. Ensuite, un ordonnanceur intelligent qui intègre cette dimension énergétique.
+                </aside>
             </section>
 
             <section data-transition="slide-in-right fade-out-left" data-menu-section="introduction">
@@ -119,6 +142,10 @@
                     <i class="fas fa-microchip fa-2x"></i> <i class="fas fa-memory fa-2x"></i> <i class="fas fa-question-circle fa-2x energy-question"></i> <i class="fas fa-plug fa-2x"></i>
                 </div>
                 <p>Ordonnanceur K8s: prend des decisions en se bassant sur les ressources CPU/RAM.</br> Ignore l'énergie, nécessaire en environnement contraint.</p>
+
+                <aside class="notes">
+                    Kubernetes, l'outil standard d'orchestration, se base sur CPU/RAM pour placer les applications. L'énergie n'est pas un critère natif, ce qui est problématique dans des contextes où elle est limitée ou coûteuse.
+                </aside>
             </section>
 
             <section data-transition="fade" data-menu-section="introduction">
@@ -127,6 +154,10 @@
                     <div class="scheduler-obj intro-scheduler">🤖<br>VoltK8s</div>
                 </div>
                 <p>Nous proposons <strong>VoltK8sScheduler</strong>: intègre l'énergie dans le placement.</p>
+
+                <aside class="notes">
+                    C'est là qu'intervient VoltK8sScheduler : il enrichit Kubernetes en intégrant l'énergie comme un critère de décision de premier plan pour le placement des charges.
+                </aside>
             </section>
 
             <section data-transition="fade" data-menu-section="introduction">
@@ -138,6 +169,9 @@
                     <li class="fragment"><i class="fas fa-vial"></i> Analyse Expérimentale</li>
                     <li class="fragment"><i class="fas fa-flag-checkered"></i> Conclusion & Travaux Futurs</li>
                 </ol>
+                <aside class="notes">
+                    Voici le déroulé de la présentation : après cette introduction, nous verrons l'état de l'art, notre approche détaillée, quelques exemples, nos résultats expérimentaux, et enfin la conclusion.
+                </aside>
             </section>
             <!-- FIN SECTION INTRODUCTION -->
 
@@ -151,7 +185,12 @@
                 <div class="icon-row fragment">
                     <i class="fas fa-bolt"></i> <i class="fas fa-sliders-h"></i> <i class="fas fa-microchip"></i>
                 </div>
+
+                <aside class="notes">
+                   Commençons par le Power Capping. C'est l'ensemble des techniques pour limiter la consommation maximale d'un serveur, crucial pour l'efficacité et la réduction des coûts.
+                </aside>
             </section>
+
             <section data-auto-animate data-transition="fade-in slide-out-left" data-menu-section="etat-art">
                 <h2>État de l'Art: Power Capping</h2>
                 <p>Mécanismes: DVFS, RAPL (Intel), Intel Node Manager, Power Gating, Thread Packing...</p>
@@ -160,27 +199,46 @@
                     <li>N'intègrent pas la puissance de la <em>source</em>.</li>
                     <li>Non conçus pour Kubernetes.</li>
                 </ul>
+
+                <aside class="notes">
+                    De nombreux mécanismes existent : DVFS, RAPL d'Intel que nous utilisons, Node Manager... Cependant, la plupart ne tiennent pas compte de l'énergie réellement disponible à la *source* et ne sont pas pensés pour l'écosystème Kubernetes. 
+                </aside>
             </section>
+
             <section data-auto-animate data-transition="fade-in slide-out-left" data-menu-section="etat-art">
                 <h2>État de l'Art: Schedulers K8s Éco-Conscients</h2>
                 <p>Plusieurs travaux visent à optimiser l'énergie dans K8s.</p>
                 <div class="icon-row">
                     <i class="fab fa-kubernetes"></i> <i class="fas fa-leaf"></i> <i class="fas fa-brain"></i>
                 </div>
+
+                <aside class="notes">
+                    Concernant les ordonnanceurs Kubernetes, plusieurs travaux ont cherché à les rendre "éco-conscients", pour mieux gérer l'énergie. 
+                </aside>
             </section>
+
             <section data-auto-animate data-transition="fade-in slide-out-left" data-menu-section="etat-art">
                 <h2>État de l'Art: Schedulers K8s Éco-Conscients</h2>
                 <p>Exemples : Kaur et al. (interférences), Vishal et al. (edge), Philipp et al. (prédiction via GNN), Tayebeh et al. (Caspian, carbone), John & Javad (RLKube).</p>
                 <p class="fragment">Ces solutions sont intéressantes, mais...</p>
+
+                <aside class="notes">
+                    On peut citer des solutions comme Caspian pour le carbone, RLKube basé sur l'IA, ou des approches utilisant des GNN pour prédire la consommation. Ces solutions sont pertinentes... 
+                </aside>
             </section>
+
             <section data-auto-animate data-transition="fade-in slide-out-left" data-menu-section="etat-art">
                 <h2>État de l'Art: Leurs Limites / Notre Niche</h2>
-                <p>Souvent, l'énergie n'est pas le <em>critère principal</em> de décision.</p>
+                <p>L'énergie n'est pas le <em>critère principal</em> de décision.</p>
                 <p class="fragment">Focus sur optimisation ressources ou allocation, pas directement sur contrainte énergétique forte.</p>
                 <p class="fragment">Notre besoin: Placer charges en fonction de l'énergie <strong>disponible et limitée</strong>.</p>
                 <div class="icon-row fragment">
                     <i class="fas fa-battery-half"></i> <i class="fas fa-puzzle-piece"></i>
                 </div>
+
+                <aside class="notes">
+                    ...mais, l'énergie n'est pas le *critère principal* de décision. Elles optimisent les ressources ou l'allocation, alors que notre besoin est de placer les charges en fonction d'une énergie *disponible et strictement limitée*. C'est notre niche. 
+                </aside>
             </section>
 
 
@@ -210,25 +268,38 @@
                 </div>
 
                 <p class="fragment image-description-after-trigger"><small>(Default Scheduler, VoltK8sScheduler, API Server, Metrics, Powercap...)</small></p>
+               <aside class="notes">
+                    Passons à notre approche. Voici l'architecture globale de VoltK8sScheduler. [Cliquer pour afficher l'image]. On y voit notre scheduler personnalisé, l'agent Powercap, les outils de monitoring et leur interaction avec l'API Kubernetes. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Composants Clés</h2>
                 <div class="component-box fragment" data-fragment-index="1">
                     <i class="fas fa-shield-alt fa-2x"></i> <h4>Powercap Agent</h4> <p>Limite puissance nœuds (RAPL).</p>
                 </div>
                 <div class="component-box fragment" data-fragment-index="2">
-                    <i class="fas fa-chart-line fa-2x"></i> <h4>Monitoring (Kepler)</h4> <p>Collecte conso. énergie.</p>
+                    <i class="fas fa-chart-line fa-2x"></i> <h4>Monitoring (Prometheus, Kepler)</h4> <p>pour collecter et agréger les métriques</p>
                 </div>
                 <div class="component-box fragment" data-fragment-index="3">
                     <div class="scheduler-obj small-scheduler">🤖</div> <h4>VoltK8sScheduler</h4> <p>Plugin K8s, décisions.</p>
                 </div>
+
+                <aside class="notes">
+                    Les trois piliers : l'agent Powercap qui applique les limites de puissance via RAPL sur chaque nœud. Le monitoring avec Prometheus et Kepler pour la collecte des données. Et VoltK8sScheduler lui-même, notre plugin qui prend les décisions. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="approche" >
                 <h2>Zoom: Power Capping avec RAPL</h2>
-                <p>RAPL: Running Average Power Limit (Intel).</p>
-                <p class="fragment">Mesure et limite la conso. de domaines du processeur.</p>
+                <ul>
+                    <li class="fragment">RAPL: Running Average Power Limit (Intel).</li>
+                    <li class="fragment">Mesure et limite la consommation de domaines du processeur.</li>
+                </ul>
+                
                 <img id="hidden-rapl-domains-img" data-src="images/rapl_domains.png" alt="Figure 3: Domaines de puissance RAPL" class="visually-hidden-image zoomable-source">
                 <div class="clickable-image-trigger fragment"
+                     style="margin-top: 30px;"
                      data-lightbox-target="hidden-rapl-domains-img"
                      tabindex="0" role="button"
                      aria-label="Afficher l'image : Domaines de puissance RAPL">
@@ -238,14 +309,27 @@
                     </p>
                 </div>
                 <p class="fragment"><small>(PKG, PPO, PP1, DRAM, PSys)</small></p>
+
+                <aside class="notes">
+                    Un focus sur RAPL d'Intel. Il permet de mesurer et limiter la consommation de différentes parties du processeur, comme le package global, les cœurs, la RAM. [Cliquer pour afficher l'image]. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>RAPL: Fenêtres Temporelles</h2>
-                <p><strong>PL1 (Long-Term)</strong>: Régule conso. moyenne (TDP).</p>
-                <p class="fragment"><strong>PL2 (Short-Term)</strong>: Permet pics de conso. brefs.</p>
-                <p class="fragment"><strong>Peak Power</strong>: Limite absolue instantanée.</p>
+                <ul>
+                    <li><strong>PL1 (Long-Term)</strong>: Régule la consommation moyenne (TDP).</li>
+                    <li class="fragment"><strong>PL2 (Short-Term)</strong>: Permet pics de consommation brefs.</li>
+                    <li class="fragment"><strong>Peak Power</strong>: Limite absolue instantanée.</li>
+                </ul>
                 <div class="icon-row fragment"> <i class="fas fa-stopwatch"></i><i class="fas fa-fire"></i><i class="fas fa-bolt"></i> </div>
+
+                <aside class="notes">
+                    RAPL fonctionne avec des fenêtres temporelles : PL1 pour la moyenne à long terme (le TDP), PL2 pour des pics courts, et une limite absolue. Cela offre une granularité fine. 
+                </aside>
+
             </section>
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Algo Power Capping (1/2)</h2>
                 <pre><code class="language-plaintext" data-line-numbers="1-6" style="font-size: 0.7em;">
@@ -258,7 +342,13 @@
                 5   return Pmax_ref; // Pmax de l'article (TDP)
                 </code></pre>
                 <p class="fragment">Initialisation: trouve Pmax de référence (TDP).</p>
+
+                <aside class="notes">
+                    Notre algorithme de power capping commence par une initialisation où il récupère la puissance maximale de référence du nœud, le TDP. 
+                </aside>
             </section>
+
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Algo Power Capping (2/2)</h2>
                 <pre><code class="language-plaintext" data-line-numbers="7-16" style="font-size: 0.65em;">
@@ -274,7 +364,13 @@
                 16  sleep(sleep_time);
                 </code></pre>
                 <p class="fragment">Boucle: ajuste limite conso. nœud selon Ps et Pmin/Pmax.</p>
+
+                <aside class="notes">
+                    Ensuite, dans une boucle, il récupère la puissance disponible à la source (Ps). Il applique alors une limite au nœud qui est soit Ps (si entre Pmin et Pmax_ref), soit Pmin, soit Pmax_ref. L'objectif est d'adapter la conso du serveur à l'énergie réellement disponible. 
+                </aside>
             </section>
+
+
             <section data-transition="fade" data-menu-section="approche" >
                 <h2>Zoom: Le Scheduler Kubernetes</h2>
                 <p>Rappel: Architecture K8s (Maître-Esclave).</p>
@@ -288,7 +384,13 @@
                         (Figure 4: Architecture Kubernetes)
                     </p>
                 </div>
+
+                <aside class="notes">
+                    Un bref rappel sur Kubernetes. [Cliquer pour afficher l'image]. Son scheduler est au cœur du placement des applications. 
+                </aside>
             </section>
+
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Framework de Scheduling K8s</h2>
                 <p>Expose points d'extension (phases) pour plugins.</p>
@@ -304,36 +406,80 @@
                 </div>
 
                 <p class="fragment">Nous utilisons: PreFilter, Filter, Score, NormalizeScore, Reserve.</p>
+
+                <aside class="notes">
+                    Heureusement, Kubernetes offre un framework de scheduling extensible. [Cliquer pour afficher l'image]. Il expose des points d'extension, des phases, où l'on peut injecter notre propre logique via des plugins. Nous utilisons notamment PreFilter, Filter, Score, NormalizeScore et Reserve. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>VoltK8sScheduler: Logique</h2>
                 <div class="scheduler-obj active">🤖</div>
-                <p>Notre ordonnanceur se basse uniquement sur l'énergie pour prendre une décision.</p>
-                <p class="fragment">Objectif : placer pods sur nœuds avec assez d'énergie disponible.</p>
+                <ul style="padding-top: 30px;">
+                    <li class="fragment">Notre ordonnanceur se basse uniquement sur l'énergie pour prendre une décision.</li>
+                    <li class="fragment">Objectif : placer pods sur nœuds avec assez d'énergie disponible.</li>
+                </ul>
+
+                <aside class="notes">
+                    La logique de VoltK8sScheduler est simple : elle se base *uniquement* sur l'énergie disponible pour prendre ses décisions. L'objectif est de placer les pods sur les nœuds ayant suffisamment de marge énergétique. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Phase 1: PreFilter</h2>
-                <p>Prépare les infos. Calcule <code>podPower</code> (utilisateur ou historique).</p>
-                <p class="fragment">Collecte <code>Pmax</code> (capping) et <code>Pac</code> (conso actuelle nœud).</p>
-                <pre class="fragment"><code class="language-plaintext" style="font-size: 0.6em;">Sortie: powerLimits [nodeName -> (Pmax, Pac, podPower)]</code></pre>
+                <ul>
+                    <li class="fragment">Prépare les infos. Calcule <code>podPower</code> (utilisateur ou historique).</li>
+                    <li class="fragment">Collecte <code>Pmax</code> (capping) et <code>Pac</code> (conso actuelle nœud).</li>
+                    <li class="fragment">Sortie: <pre><code>powerLimits [nodeName -> (Pmax, Pac, podPower)]</code></pre></li>
+                </ul>
+
+                <aside class="notes">
+                    Première phase, PreFilter : on collecte toutes les informations. La puissance requise par le pod (définie par l'utilisateur ou estimée d'après son historique). Et pour chaque nœud, sa Pmax (issue du capping) et sa consommation actuelle (Pac).
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Phase 2: Filter </h2>
                 <p>Élimine nœuds non viables.</p>
                 <pre class="fragment">Nœud viable si : <code style="font-size: 4em;" >(Pmax - Pac - allocatedPower) >= podPower</code></pre>
                 <div class="icon-row fragment"> <i class="fas fa-filter"></i> <i class="fas fa-check-circle green"></i> <i class="fas fa-times-circle red"></i> </div>
+
+                <aside class="notes">
+                    Deuxième phase, Filter : on élimine les nœuds qui ne peuvent pas accueillir le pod. Un nœud est viable si sa puissance disponible (Pmax moins Pac moins ce qui est déjà alloué temporairement) est supérieure à la puissance requise par le pod. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Phase 3: Score </h2>
                 <p>Attribue un score aux nœuds filtrés.</p>
                 <pre class="fragment"><code style="font-size: large;">Score = Pmax - Pac - podPower - allocatedPower</code></pre>
                 <div class="icon-row fragment"> <i class="fas fa-star"></i> <i class="fas fa-sort-numeric-up"></i> </div>
+
+                <aside class="notes">
+                    Troisième phase, Score : pour les nœuds restants, on leur attribue un score. Plus la puissance restante après placement du pod est élevée, meilleur est le score. On privilégie donc les nœuds avec le plus de marge. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="approche">
                 <h2>Phases 4 & 5</h2>
-                <p><strong>NormalizeScore</strong>: Normalise scores (0-MaxNodeScore).</p>
-                <p class="fragment"><strong>Reserve</strong>: Réserve temporairement <code>podPower</code>. Compense le délai de scrapping des métriques.</p>
+                <ul>
+                    <li class="fragment"><strong>NormalizeScore</strong>: Normalise les scores (0-MaxNodeScore).</li>
+                    <li class="fragment"><strong>Reserve</strong>: Réserve temporairement <code>podPower</code>. Compense le délai de scrapping des métriques.</li>
+                </ul>
+
                 <div class="icon-row fragment"> <i class="fas fa-balance-scale"></i> <i class="fas fa-lock"></i> </div>
+
+                <aside class="notes">
+                    <p><strong>Objectif :</strong> "Simuler" l'utilisation d'énergie du pod avant son assignation réelle pour éviter la sur-allocation.</p>
+                    <ul>
+                        <li >Les outils de monitoring (Prometheus, Kepler) collectent les métriques avec un <span class="key-point">délai</span>.</li>
+                        <li >Si plusieurs pods sont schedulés rapidement, la consommation actuelle n'est pas à jour.</li>
+                        <li >Lorsqu'un nœud est choisi, on "réserve" la puissance estimée sur ce nœud.
+                            <ul><li>Cette puissance réservée (<code>allocatedPower</code> dans l'algorithme de Filter) est prise en compte pour les décisions de scheduling suivantes.</li></ul>
+                        </li>
+                        <li >Si le scheduling échoue plus tard, la puissance réservée est libérée (Unreserve).</li>
+                    </ul>
+                </aside>
             </section>
 
 
@@ -347,7 +493,12 @@
                     <div class="pod-queue"><p>File:</p><div class="pod-obj pod1-queue">Pod1 (20W)</div><div class="pod-obj pod2-queue">Pod2 (15W u, 30W h)</div></div>
                 </div>
                 <p><small><code>alloc</code>: {"A":0, "B":0}. MaxScore: 100.</small></p>
+
+                <aside class="notes">
+                    Illustrons cela avec un exemple simple. Deux nœuds, A et B, avec des capacités et consommations différentes. Deux pods en attente, P1 (20W) et P2 (qui a un historique à 30W plus élevé que sa demande utilisateur de 15W). 
+                </aside>
             </section>
+
             <section data-transition="fade-in slide-out-left" data-menu-section="exemple"><h2>Pod1: PreFilter</h2><div class="k8s-container pod1-prefilter"><div class="scheduler-obj active">🤖<br>Analyse P1</div> <div class="pod-obj pod1-active">P1<br>20W</div><div class="node-obj node-a">A<br><span class="available-power">70W</span></div><div class="node-obj node-b">B<br><span class="available-power">80W</span></div></div><p>P1: user 20W. <code>podPower</code> = 20W.</p></section>
             <section data-transition="fade-in slide-out-left" data-menu-section="exemple"><h2>Pod1: Filter</h2><div class="k8s-container pod1-filter"><div class="scheduler-obj">🤖</div> <div class="pod-obj pod1-checking">P1 (20W)</div><div class="node-obj node-a viable">A (70W) ✔️</div><div class="node-obj node-b viable">B (80W) ✔️</div></div><p>A et B viables pour P1 (20W).</p></section>
             <section data-transition="fade-in slide-out-left" data-menu-section="exemple"><h2>Pod1: Score</h2><div class="k8s-container pod1-score"><div class="scheduler-obj">🤖<br>Score!</div> <div class="pod-obj pod1-waiting">P1 (20W)</div><div class="node-obj node-a"><div class="score">S: 50</div>A</div> <div class="node-obj node-b"><div class="score">S: 60</div>B</div></div><p>A: 50. B: 60.</p></section>
@@ -371,10 +522,52 @@
 
             <section id="experience" data-transition="fade" data-menu-section="experience">
                 <h2>Analyse Expérimentale: Configuration</h2>
-                <p>Tests sur Grid5000 (Taurus, Econome, etc.).</p>
-                <p class="fragment">Cluster local: 3 mini-PCs (Intel i7, 15W, RAPL v2).</p>
+                
+                <ul>
+                    <li class="fragment">4 sites différents pour tester <span class="key-point">2 versions de RAPL</span>.
+                        <table style="font-size:0.85em; width: auto; margin: 0 auto; max-width: 350px;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 4px 8px;">Nom</th>
+                                    <th style="padding: 4px 8px;">Cœurs</th>
+                                    <th style="padding: 4px 8px;">Version RAPL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 4px 8px;">Taurus</td>
+                                    <td style="padding: 4px 8px;">24</td>
+                                    <td style="padding: 4px 8px;">v1</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 8px;">Econome</td>
+                                    <td style="padding: 4px 8px;">32</td>
+                                    <td style="padding: 4px 8px;">v1</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 8px;">Fleckenstein</td>
+                                    <td style="padding: 4px 8px;">64</td>
+                                    <td style="padding: 4px 8px;">v2</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 8px;">Paradoxe</td>
+                                    <td style="padding: 4px 8px;">104</td>
+                                    <td style="padding: 4px 8px;">v2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                         <p class="fragment" style="font-size:0.8em;">Table 1: Spécifications des serveurs Grid5000.</p>
+                    </li>
+                
+                <li class="fragment">Cluster local: 3 mini-PCs (Intel i7, 15W, RAPL v2).</li>
+                </ul>
                 <div class="icon-row fragment"> <i class="fas fa-server"></i> <i class="fas fa-desktop"></i> <i class="fas fa-flask"></i> </div>
+
+                <aside class="notes">
+                    Passons aux expériences. Nous avons testé le power capping sur Grid5000, avec différents serveurs pour couvrir les versions 1 et 2 de RAPL. Et VoltK8sScheduler sur un cluster local de 3 mini-PCs. (Environ 25 sec)
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="experience">
                 <h2>Résultats Power Capping (Grid5000)</h2>
                 <p>Comportement capping selon version RAPL.</p>
@@ -401,6 +594,10 @@
                     </div>
                 </div>
                 <p class="fragment">RAPL v1: Chute rapide conso. v2: Baisse linéaire.</p>
+
+                <aside class="notes">
+                    Concernant le power capping : [Cliquer pour RAPL v1, puis RAPL v2]. On observe que RAPL v1 montre une chute de consommation plus abrupte autour de 60-70% du powercap, tandis que RAPL v2 offre une décroissance plus linéaire. Mais dans les deux cas, le capping est efficace. 
+                </aside>
             </section>
             <!-- <section data-transition="fade" data-menu-section="experience">
                 <h2>Distribution Pods: Nœuds Identiques</h2>
@@ -412,7 +609,11 @@
             <section data-transition="fade" data-menu-section="experience">
                 <h2>Distribution Pods: Nœuds Différenciés</h2>
                 <p>Scénario : Node1 Pmax = 90% de Node2 Pmax.</p>
+                <aside class="notes">
+                    Pour tester VoltK8sScheduler, nous avons simulé des nœuds avec des capacités énergétiques différentes : Node1 a une Pmax de 90% par rapport à Node2. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="experience">
                 <h3>Cas 1: Application web (guestbook)</h3>
                 <div style="display: flex; justify-content: space-around; gap:20px;" >
@@ -439,20 +640,37 @@
                 </div>
                 
                 <p class="fragment">Plus de pods sur Node2 pour compenser l'écart entre les deux nœuds.</p>
+
+                <aside class="notes">
+                    Premier cas, une application web légère. [Cliquer pour l'architecture, puis pour la courbe]. On voit que le scheduler place logiquement plus de pods sur Node2, celui avec plus de capacité, pour compenser l'écart. 
+                </aside>
             </section>
+
+
             <section data-transition="fade" data-menu-section="experience" >
                 <h3 style="text-align: center;">Cas 2: Stress-ng (gourmand)</h3>
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img data-src="images/scores_and_pods.png" alt="Figure 12: Stress-ng, Nœuds différenciés" class="figure-medium fragment zoomable" width="600" height="350" sizes="(max-width: 700px) 100vw, 600px" style="display: block; margin: 0 auto;">
                     <p class="fragment" style="text-align: center;">Moins de pods sur Node2 suffisent.</p>
                 </div>
+
+                <aside class="notes">
+                    Deuxième cas, avec Stress-ng, une charge très gourmande en énergie. [Montrer la courbe]. Ici, moins de pods sur Node2 suffisent pour équilibrer la charge, car chaque pod consomme beaucoup plus. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="experience">
                 <h2>Synthèse Expérimentale</h2>
-                <p>Power capping efficace pour respecter limites.</p>
-                <p class="fragment">VoltK8sScheduler favorise nœuds avec énergie résiduelle.</p>
-                <p class="fragment">Décisions cohérentes avec algorithmes.</p>
+                <ul>
+                    <li class="fragment">Power capping efficace pour respecter limites.</li>
+                    <li class="fragment">VoltK8sScheduler favorise nœuds avec énergie résiduelle.</li>
+                    <li class="fragment">Décisions cohérentes avec algorithmes.</li>
+                </ul>
                 <div class="icon-row fragment"> <i class="fas fa-check-double green"></i> <i class="fas fa-thumbs-up"></i> </div>
+
+                <aside class="notes">
+                    En synthèse, nos expériences montrent que le power capping est efficace. VoltK8sScheduler favorise bien les nœuds avec plus d'énergie résiduelle, et ses décisions sont cohérentes avec sa logique interne. 
+                </aside>
             </section>
 
 
@@ -460,26 +678,42 @@
             
             <section id="conclusion" data-transition="fade" data-menu-section="conclusion">
                 <h2>Conclusion</h2>
-                <p>VoltK8sScheduler: ordonnanceur K8s tenant compte énergie.</p>
-                <p class="fragment">Agent power capping + scheduler avec Prometheus/Kepler.</p>
-                <p class="fragment">Combinaison respecte budget énergie et déploie apps.</p>
+                <ul>
+                    <li class="fragment">VoltK8sScheduler: ordonnanceur K8s tenant compte énergie.</li>
+                    <li class="fragment">Agent power capping + scheduler avec Prometheus/Kepler.</li>
+                    <li class="fragment">Combinaison power capping + VoltK8sScheduler = Maintien de la consommation dans les limites <span class="key-point">tout en assurant le déploiement</span> sur des nœuds ayant assez d'énergie.</li>
+                </ul>
+
+                <aside class="notes">
+                    Pour conclure, nous avons présenté VoltK8sScheduler, un ordonnanceur Kubernetes qui intègre la dimension énergétique. Combiné à notre agent de power capping et au monitoring via Prometheus/Kepler, il permet de maintenir la consommation dans les limites fixées tout en assurant le déploiement des applications sur les nœuds les plus aptes. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="conclusion">
                 <h2>Limitations</h2>
                 <ul class="spaced-list">
-                    <li class="fragment"><i class="fab fa-intel"></i> Plateformes Intel avec RAPL.</li>
-                    <li class="fragment"><i class="fas fa-cloud"></i> Non sur VMs (K8s prod).</li>
-                    <li class="fragment"><i class="fas fa-chart-area"></i> Impact capping sur perfs à évaluer.</li>
+                    <li class="fragment"><i class="fab fa-intel"></i> Uniquement pour plateformes Intel avec RAPL.</li>
+                    <li class="fragment"><i class="fas fa-cloud"></i> Non déployable sur machines virtuelles</li>
+                    <li class="fragment"><i class="fas fa-chart-area"></i> Impact potentiel du power capping sur les performances applicatives</li>
                 </ul>
+
+                <aside class="notes">
+                    Notre solution a des limitations : elle est pour l'instant spécifique à Intel/RAPL, ne fonctionne pas sur VM (où tournent beaucoup de K8s en prod), et l'impact précis sur les perfs applicatives reste à évaluer plus finement. 
+                </aside>
             </section>
+
             <section data-transition="fade" data-menu-section="conclusion">
                 <h2>Travaux Futurs</h2>
                 <ul class="spaced-list">
-                    <li class="fragment"><i class="fas fa-microchip"></i> Étendre à AMD.</li>
+                    <li class="fragment"><i class="fas fa-microchip"></i> Extension aux autres processeurs</li>
                     <li class="fragment"><i class="fas fa-server"></i> Intégration VMs.</li>
-                    <li class="fragment"><i class="fas fa-cogs"></i> Autres mécanismes power capping.</li>
+                    <li class="fragment"><i class="fas fa-cogs"></i>  Intégration d'autres mécanismes de power capping.</li>
                     <!-- <li class="fragment"><i class="fas fa-recycle"></i> Prise en compte origine énergie.</li> -->
                 </ul>
+
+                <aside class="notes">
+                    Pour les perspectives, nous souhaitons étendre la compatibilité aux processeurs AMD et aux VMs, intégrer d'autres mécanismes de capping, et pourquoi pas, prendre en compte l'origine (et donc l'intensité carbone) de l'énergie en temps réel. 
+                </aside>
             </section>
 
             <section data-transition="fade" data-menu-section="conclusion">
@@ -511,11 +745,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+
     <script>
         const deck = new Reveal({
             hash: true, 
-            width: 1024, 
-            height: 768, 
+            // width: 1024, 
+            // height: 768, 
             margin: 0.04,
             transition: 'fade',
             controls: false, 

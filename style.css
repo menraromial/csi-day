@@ -502,4 +502,51 @@ section.title-slide-container {
     /* Si vous voulez les cacher: display: none; */
 }
 
-/* ... (Le reste de votre style.css) ... */
+
+.two-column-layout {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 50px !important; /* Espace entre les colonnes */
+}
+.two-column-layout > div {
+    width: 48%;
+}
+
+.need-margin-top {
+    margin-top: 80px;
+}
+
+
+.reveal .slides code { /* Cible tous les éléments code */
+    font-size: 1.1em; /* Ajustez cette valeur selon vos besoins */
+    /* Par exemple: 1.2em, 120%, 16px, etc. */
+}
+
+.reveal .slides pre code { /* Cible spécifiquement le code dans les blocs <pre> */
+    font-size: 0.9em; /* Hérite du .reveal pre, mais vous pouvez surcharger ici si besoin */
+                        /* Ou vous pouvez spécifier une taille absolue si vous préférez */
+                        /* Par exemple: font-size: 15px; */
+}
+
+/* Pour s'assurer que le code inline n'est pas trop grand s'il hérite d'un parent avec une grande police */
+.reveal .slides p code,
+.reveal .slides li code,
+.reveal .slides h1 code, /* Ajoutez d'autres sélecteurs si nécessaire */
+.reveal .slides h2 code,
+.reveal .slides h3 code,
+.reveal .slides h4 code {
+    font-size: 0.9em; /* Ou une taille fixe comme 14px, pour qu'il soit proportionnel au texte environnant */
+    /* background-color: #f0f0f0; /* Optionnel: un fond léger pour le code inline */
+    /* padding: 2px 4px; */
+    /* border-radius: 3px; */
+}
+
+
+/* Si vous voulez spécifiquement agrandir le texte dans les blocs <pre><code> */
+.reveal .slides pre {
+    font-size: 0.8em; /* Augmentez cette valeur. Ex: 0.85em, 0.9em, ou une valeur en px */
+                        /* La taille de 'code' à l'intérieur de 'pre' sera relative à ça, */
+                        /* sauf si vous la surchargez spécifiquement comme ci-dessus. */
+    /* ... autres styles de 'pre' que vous aviez ... */
+}
