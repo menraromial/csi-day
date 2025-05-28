@@ -58,7 +58,7 @@
                 </div>
                 <div class="logo-banner">
                     <img src="images/inria.png" alt="Logo Inria" class="title-logo">
-                    <img src="images/ls2n.jpg" alt="Logo ls2n" class="title-logo">
+                    <img src="images/ls2n.png" alt="Logo ls2n" class="title-logo">
                     <img src="images/stack.png" alt="Logo STACK" class="title-logo">
                     <img src="images/IMTA.png" alt="Logo IMTA" class="title-logo">
                 </div>
@@ -68,6 +68,8 @@
                     pour un avenir numérique durable.
                 </aside>
             </section>
+
+            
 
             <section data-transition="fade" data-menu-section="introduction">
                 <h2>Auteurs</h2>
@@ -466,7 +468,65 @@
                 </aside>
             </section>
 
+             <section data-transition="fade" data-menu-section="approche">
+                <h2>Formalisation: Problème de Placement</h2>
+                <p>Objectif : Placer un pod $p$ sur un nœud $j$ parmi $N$ nœuds disponibles.</p>
+                <ul>
+                    <li class="fragment">Données du problème :
+                        <ul>
+                            <li>Ensemble de Nœuds : $J = \{1, 2, ..., N\}$</li>
+                            <li>Puissance Max Nœud $j$: $P_{max,j}$</li>
+                            <li>Puissance Actuelle Nœud $j$: $P_{actuelle,j}$</li>
+                            <li>Puissance Requise Pod $p$ sur Nœud $j$: $P_{pod,j}$</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Variable de Décision (binaire) :
+                        <ul>
+                            <li>$x_j \in \{0,1\}$ : $x_j = 1$ si pod $p$ sur nœud $j$, $0$ sinon.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    Pour formaliser le choix du meilleur nœud, on définit les données : l'ensemble des nœuds, leurs capacités de puissance max, leur consommation actuelle, et la puissance que le pod exigerait sur chaque nœud. Notre variable de décision, $x_j$, indique si oui ou non on place le pod sur le nœud $j$. (40 sec)
+                </aside>
+            </section>
+
             <section data-transition="fade" data-menu-section="approche">
+                <h2>Formalisation: Contraintes</h2>
+                <ol>
+                    <li class="fragment"><strong>Assignation Unique :</strong> Le pod doit être sur un seul nœud.
+                        <p>$\sum_{j=1}^{N} x_j \le 1$</p>
+                        <!-- <small>(Ou $\sum x_j \le 1$ si le déploiement est optionnel)</small> -->
+                    </li>
+                    <li class="fragment"><strong>Capacité de Puissance :</strong> La conso. totale ne doit pas excéder $P_{max,j}$.
+                        <p>$P_{actuelle,j} + P_{pod,j} \cdot x_j \le P_{max,j} \quad \forall j \in J $</p>
+                        <p>Si $x_j=1 \implies P_{actuelle,j} + P_{pod,j} \le P_{max,j}$</p>
+                        <p>Si $x_j=0 \implies P_{actuelle,j} \le P_{max,j}$ (état initial)</p>
+                    </li>
+                </ol>
+                <aside class="notes">
+                    Deux contraintes majeures. Premièrement, le pod doit être assigné à un seul nœud. Deuxièmement, et c'est crucial, pour chaque nœud, si on y place le pod, la somme de sa consommation actuelle et de celle du pod ne doit pas dépasser sa capacité maximale. (45 sec)
+                </aside>
+            </section>
+
+            <section data-transition="fade" data-menu-section="approche">
+                <h2>Formalisation: Fonctions Objectifs</h2>
+                <p>Quelle stratégie d'ordonnancement ?</p>
+                <ul>
+                    <li class="fragment"><strong>1. Maximiser Puissance Restante (Best Fit) :</strong>
+                        <p>$\text{Maximiser } \sum_{j=1}^{N} (P_{max,j} - (P_{actuelle,j} + P_{pod,j})) \cdot x_j$</p>
+                    </li>
+                    <li class="fragment"><strong>2. Minimiser Charge Nœud Choisi (Least Loaded) :</strong>
+                        <p>$\text{Minimiser } \sum_{j=1}^{N} \left( \frac{P_{actuelle,j} + P_{pod,j}}{P_{max,j}} \right) \cdot x_j$</p>
+                    </li>
+                    <li class="fragment">Minimiser la Puissance Consommée par le Pod : $\text{Minimiser } \sum_{j=1}^{N} P_{pod,j} \cdot x_j$</li>
+                </ul>
+                <aside class="notes">
+                    Enfin, la fonction objectif définit notre stratégie. On pourrait vouloir minimiser la charge en pourcentage du nœud choisi, ou la consommation du pod lui-même si elle varie. Dans VoltK8sScheduler, notre approche principale, illustrée par la phase "Score", correspond à maximiser la puissance restante sur le nœud choisi. (50 sec)
+                </aside>
+            </section>
+
+            <!-- <section data-transition="fade" data-menu-section="approche">
                 <h2>VoltK8sScheduler: Logique</h2>
                 <div class="scheduler-obj active">🤖</div>
                 <ul style="padding-top: 30px;">
@@ -557,7 +617,7 @@
                         <li>Si le scheduling échoue plus tard, la puissance réservée est libérée (Unreserve).</li>
                     </ul>
                 </aside>
-            </section>
+            </section> -->
 
 
             <!-- === EXEMPLE ILLUSTRATIF === -->
@@ -948,6 +1008,8 @@
                     <li class="fragment"><i class="fas fa-cloud"></i> Non déployable sur machines virtuelles</li>
                     <li class="fragment"><i class="fas fa-chart-area"></i> Impact potentiel du power capping sur les
                         performances applicatives</li>
+                    <li class="fragment">Nous ne gérons pas la destruction des pods</li>
+                    <li class="fragment">La répartition de l’énergie disponible entre les nœuds n’est pas encore définie. Aucun outil ne permet actuellement de la gérer.</li>
                 </ul>
 
                 <aside class="notes">

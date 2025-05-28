@@ -330,7 +330,7 @@ section.title-slide-container {
     /* margin-top: 20px; */
 
     /* NOUVEAU: Fond pour la bannière de logos */
-    background-color: rgba(221, 223, 233, 0.5); /* #44475a (bordure Dracula) avec opacité, ou une autre couleur */
+    background-color: rgba(255, 255, 255, 0.745); /* #44475a (bordure Dracula) avec opacité, ou une autre couleur */
     /* OU un gris neutre si le bleu pose toujours problème : */
     /* background-color: rgba(50, 50, 50, 0.6); */
     border-radius: 8px; /* Coins arrondis pour le fond */
