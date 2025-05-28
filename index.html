@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VoltK8sScheduler: A Kubernetes scheduler for energy-constrained computing environments</title>
+    <title>VoltK8s: A Kubernetes scheduler for energy-constrained computing environments</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/moon.min.css" id="theme">
@@ -53,7 +53,7 @@
                 data-menu-section="introduction">
 
                 <div class="title-slide-main-content title-slide-container">
-                    <h1 class="title-main">VoltK8sScheduler</h1>
+                    <h1 class="title-main">VoltK8s</h1>
                     <p class="subtitle-main">Un ordonnanceur Kubernetes pour environnements contraints en énergie</p>
                 </div>
                 <div class="logo-banner">
@@ -63,7 +63,7 @@
                     <img src="images/IMTA.png" alt="Logo IMTA" class="title-logo">
                 </div>
                 <aside class="notes">
-                    Bonjour à tous. Je suis [Votre Nom] et aujourd'hui, je vais vous présenter VoltK8sScheduler, notre
+                    Bonjour à tous. Je suis [Votre Nom] et aujourd'hui, je vais vous présenter VoltK8s, notre
                     solution pour optimiser l'utilisation de l'énergie dans les clusters Kubernetes, un enjeu crucial
                     pour un avenir numérique durable.
                 </aside>
@@ -188,14 +188,14 @@
             </section>
 
             <section data-transition="fade" data-menu-section="introduction">
-                <h2>Notre Solution: VoltK8sScheduler</h2>
+                <h2>Notre Solution: VoltK8s</h2>
                 <div class="intro-icons">
                     <div class="scheduler-obj intro-scheduler">🤖<br>VoltK8s</div>
                 </div>
-                <p>Nous proposons <strong>VoltK8sScheduler</strong>: intègre l'énergie dans le placement.</p>
+                <p>Nous proposons <strong>VoltK8s</strong>: intègre l'énergie dans le placement.</p>
 
                 <aside class="notes">
-                    C'est là qu'intervient VoltK8sScheduler : il enrichit Kubernetes en intégrant l'énergie comme un
+                    C'est là qu'intervient VoltK8s : il enrichit Kubernetes en intégrant l'énergie comme un
                     critère de décision de premier plan pour le placement des charges.
                 </aside>
             </section>
@@ -288,27 +288,27 @@
             <!-- Slide avec image cachée et texte cliquable -->
             <section id="approche" data-transition="fade" data-menu-section="approche">
                 <h2>Approche Proposée: Architecture</h2>
-                <p>Vue d'ensemble de notre solution VoltK8sScheduler.</p>
+                <p>Vue d'ensemble de notre solution VoltK8s.</p>
 
                 <!-- L'image est ici mais sera cachée par CSS -->
-                <img id="hidden-architecture-img" src="images/voltk8sschedulerarchitecture.jpg"
-                    alt="Figure 2: VoltK8sScheduler architecture - Vue détaillée de l'interaction des composants : Default Scheduler, VoltK8sScheduler, API Server, Metrics, Powercap Agent."
+                <img id="hidden-architecture-img" src="images/VoltK8sarchitecture.jpg"
+                    alt="Figure 2: VoltK8s architecture - Vue détaillée de l'interaction des composants : Default Scheduler, VoltK8s, API Server, Metrics, Powercap Agent."
                     class="visually-hidden-image zoomable-source">
                 <!-- zoomable-source est une nouvelle classe pour identifier la source de l'image pour la lightbox -->
 
                 <!-- Le texte cliquable qui déclenchera la lightbox -->
                 <div class="clickable-image-trigger fragment" data-lightbox-target="hidden-architecture-img"
-                    tabindex="0" role="button" aria-label="Afficher l'image : Architecture VoltK8sScheduler">
+                    tabindex="0" role="button" aria-label="Afficher l'image : Architecture VoltK8s">
                     <i class="fas fa-search-plus"></i> Afficher l'architecture détaillée
                     <p class="alt-text-preview">
-                        (Figure 2: VoltK8sScheduler architecture - Interaction des composants)
+                        (Figure 2: VoltK8s architecture - Interaction des composants)
                     </p>
                 </div>
 
-                <p class="fragment image-description-after-trigger"><small>(Default Scheduler, VoltK8sScheduler, API
+                <p class="fragment image-description-after-trigger"><small>(Default Scheduler, VoltK8s, API
                         Server, Metrics, Powercap...)</small></p>
                 <aside class="notes">
-                    Passons à notre approche. Voici l'architecture globale de VoltK8sScheduler. [Cliquer pour afficher
+                    Passons à notre approche. Voici l'architecture globale de VoltK8s. [Cliquer pour afficher
                     l'image]. On y voit notre scheduler personnalisé, l'agent Powercap, les outils de monitoring et leur
                     interaction avec l'API Kubernetes.
                 </aside>
@@ -328,13 +328,13 @@
                 </div>
                 <div class="component-box fragment" data-fragment-index="3">
                     <div class="scheduler-obj small-scheduler">🤖</div>
-                    <h4>VoltK8sScheduler</h4>
+                    <h4>VoltK8s</h4>
                     <p>Plugin K8s, décisions.</p>
                 </div>
 
                 <aside class="notes">
                     Les trois piliers : l'agent Powercap qui applique les limites de puissance via RAPL sur chaque nœud.
-                    Le monitoring avec Prometheus et Kepler pour la collecte des données. Et VoltK8sScheduler lui-même,
+                    Le monitoring avec Prometheus et Kepler pour la collecte des données. Et VoltK8s lui-même,
                     notre plugin qui prend les décisions.
                 </aside>
             </section>
@@ -522,12 +522,12 @@
                     <li class="fragment">Minimiser la Puissance Consommée par le Pod : $\text{Minimiser } \sum_{j=1}^{N} P_{pod,j} \cdot x_j$</li>
                 </ul>
                 <aside class="notes">
-                    Enfin, la fonction objectif définit notre stratégie. On pourrait vouloir minimiser la charge en pourcentage du nœud choisi, ou la consommation du pod lui-même si elle varie. Dans VoltK8sScheduler, notre approche principale, illustrée par la phase "Score", correspond à maximiser la puissance restante sur le nœud choisi. (50 sec)
+                    Enfin, la fonction objectif définit notre stratégie. On pourrait vouloir minimiser la charge en pourcentage du nœud choisi, ou la consommation du pod lui-même si elle varie. Dans VoltK8s, notre approche principale, illustrée par la phase "Score", correspond à maximiser la puissance restante sur le nœud choisi. (50 sec)
                 </aside>
             </section>
 
             <!-- <section data-transition="fade" data-menu-section="approche">
-                <h2>VoltK8sScheduler: Logique</h2>
+                <h2>VoltK8s: Logique</h2>
                 <div class="scheduler-obj active">🤖</div>
                 <ul style="padding-top: 30px;">
                     <li class="fragment">Notre ordonnanceur se basse uniquement sur l'énergie pour prendre une décision.
@@ -536,7 +536,7 @@
                 </ul>
 
                 <aside class="notes">
-                    La logique de VoltK8sScheduler est simple : elle se base *uniquement* sur l'énergie disponible pour
+                    La logique de VoltK8s est simple : elle se base *uniquement* sur l'énergie disponible pour
                     prendre ses décisions. L'objectif est de placer les pods sur les nœuds ayant suffisamment de marge
                     énergétique.
                 </aside>
@@ -622,7 +622,7 @@
 
             <!-- === EXEMPLE ILLUSTRATIF === -->
             <section data-transition="fade" id="exemple" data-menu-section="exemple">
-                <h2>VoltK8sScheduler: Démo</h2>
+                <h2>VoltK8s: Démo</h2>
                 <div class="k8s-container initial-setup">
                     <div class="scheduler-obj">🤖<br>Scheduler</div>
                     <div class="node-obj node-a">NodeA
@@ -862,7 +862,7 @@
 
                 <aside class="notes">
                     Passons aux expériences. Nous avons testé le power capping sur Grid5000, avec différents serveurs
-                    pour couvrir les versions 1 et 2 de RAPL. Et VoltK8sScheduler sur un cluster local de 3 mini-PCs.
+                    pour couvrir les versions 1 et 2 de RAPL. Et VoltK8s sur un cluster local de 3 mini-PCs.
                     (Environ 25 sec)
                 </aside>
             </section>
@@ -903,13 +903,13 @@
                 <p>Scénario 1: 2 nœuds workers identiques.</p>
                 <p class="fragment">App web. HPA ajoute 2 réplicas/fois.</p>
                 <img data-src="images/figure10.png" alt="Figure 10: Nœuds identiques" class="figure-medium fragment zoomable">
-                <p class="fragment">VoltK8sScheduler équilibre bien la charge.</p>
+                <p class="fragment">VoltK8s équilibre bien la charge.</p>
             </section> -->
             <section data-transition="fade" data-menu-section="experience">
                 <h2>Distribution Pods: Nœuds Différenciés</h2>
                 <p>Scénario : Node1 Pmax = 90% de Node2 Pmax.</p>
                 <aside class="notes">
-                    Pour tester VoltK8sScheduler, nous avons simulé des nœuds avec des capacités énergétiques
+                    Pour tester VoltK8s, nous avons simulé des nœuds avec des capacités énergétiques
                     différentes : Node1 a une Pmax de 90% par rapport à Node2.
                 </aside>
             </section>
@@ -967,14 +967,14 @@
                 <h2>Synthèse Expérimentale</h2>
                 <ul>
                     <li class="fragment">Power capping efficace pour respecter limites.</li>
-                    <li class="fragment">VoltK8sScheduler favorise nœuds avec énergie résiduelle.</li>
+                    <li class="fragment">VoltK8s favorise nœuds avec énergie résiduelle.</li>
                     <li class="fragment">Décisions cohérentes avec algorithmes.</li>
                 </ul>
                 <div class="icon-row fragment"> <i class="fas fa-check-double green"></i> <i
                         class="fas fa-thumbs-up"></i> </div>
 
                 <aside class="notes">
-                    En synthèse, nos expériences montrent que le power capping est efficace. VoltK8sScheduler favorise
+                    En synthèse, nos expériences montrent que le power capping est efficace. VoltK8s favorise
                     bien les nœuds avec plus d'énergie résiduelle, et ses décisions sont cohérentes avec sa logique
                     interne.
                 </aside>
@@ -986,15 +986,15 @@
             <section id="conclusion" data-transition="fade" data-menu-section="conclusion">
                 <h2>Conclusion</h2>
                 <ul>
-                    <li class="fragment">VoltK8sScheduler: ordonnanceur K8s tenant compte énergie.</li>
+                    <li class="fragment">VoltK8s: ordonnanceur K8s tenant compte énergie.</li>
                     <li class="fragment">Agent power capping + scheduler avec Prometheus/Kepler.</li>
-                    <li class="fragment">Combinaison power capping + VoltK8sScheduler = Maintien de la consommation dans
+                    <li class="fragment">Combinaison power capping + VoltK8s = Maintien de la consommation dans
                         les limites <span class="key-point">tout en assurant le déploiement</span> sur des nœuds ayant
                         assez d'énergie.</li>
                 </ul>
 
                 <aside class="notes">
-                    Pour conclure, nous avons présenté VoltK8sScheduler, un ordonnanceur Kubernetes qui intègre la
+                    Pour conclure, nous avons présenté VoltK8s, un ordonnanceur Kubernetes qui intègre la
                     dimension énergétique. Combiné à notre agent de power capping et au monitoring via
                     Prometheus/Kepler, il permet de maintenir la consommation dans les limites fixées tout en assurant
                     le déploiement des applications sur les nœuds les plus aptes.
